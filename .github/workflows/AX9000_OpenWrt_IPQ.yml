@@ -8,16 +8,16 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Ax6_immortalwrt_QCA_Apk
+name: AX9000_OpenWrt_IPQ
 
 on:
-  schedule:
-    - cron: 2 */5 * * *
-  push:
-    tags:
-    - 'v*'
-  watch:
-    types: [started]
+  # schedule:
+    # - cron: 2 */5 * * *
+  # push:
+    # tags:
+    # - 'v*'
+  # watch:
+    # types: [started]
   repository_dispatch:
   workflow_dispatch:
     inputs:
@@ -27,13 +27,13 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/VIKINGYFY/immortalwrt.git
-  REPO_BRANCH: main
+  REPO_URL: https://github.com/qosmio/openwrt-ipq.git
+  REPO_BRANCH: 24.10-nss
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: ax6_immortalwrt_Qca_apk.config
-  DIY_P1_SH: ax3600_immortalwrt_Qca_apk_part1.sh
-  DIY_P2_SH: ax6_immortalwrt_Qca_part2.sh
-  RELEASE_TAG: Ax6_immortalwrt_QCA_Apk
+  CONFIG_FILE: AX9000.config
+  DIY_P1_SH: AX9000_part1.sh
+  DIY_P2_SH: AX9000_part2.sh
+  RELEASE_TAG: AX9000_OpenWrt_IPQ
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
@@ -86,12 +86,12 @@ jobs:
     - name: TG Message
       if: env.SERVERCHAN_SCKEY == 'true'
       run: |
-        curl -k --data chat_id=${{ secrets.TGID }} --data "text=主人：正在为您编译新的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M"),请耐心等待...... 😋💐" "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
+        curl -k --data chat_id=${{ secrets.TGID }} --data "text=正在编译新的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M"),请耐心等待...... " "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
         
     - name: PUSHPLUS Message
       if: env.SERVERCHAN_SCKEY == 'true'
       run: |
-        curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="开始编译$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")" --data "content=🎉 主人：正在为您编译新的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M"),请耐心等待...... 😋💐" "http://www.pushplus.plus/send"
+        curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="开始编译$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")" --data "content=正在编译新的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M"),请耐心等待...... " "http://www.pushplus.plus/send"
  
     - name: Initialization environment
       env:
@@ -240,12 +240,12 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }}
 
-    - name: TG Message
-      if: env.SERVERCHAN_SCKEY == 'true'
-      run: |
-        curl -k --data chat_id=${{ secrets.TGID }} --data "text=我亲爱的主人您要编译的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")固件编译成功！" "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
+    # - name: TG Message
+      # if: env.SERVERCHAN_SCKEY == 'true'
+      # run: |
+        # curl -k --data chat_id=${{ secrets.TGID }} --data "text=编译的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")固件编译成功！" "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
         
-    - name: PUSHPLUS Message
-      if: env.SERVERCHAN_SCKEY == 'true'
-      run: |
-        curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="恭喜主人$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")固件编译成功！" --data "content=我亲爱的主人您要编译的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")固件成功完成了！" "http://www.pushplus.plus/send"
+    # - name: PUSHPLUS Message
+      # if: env.SERVERCHAN_SCKEY == 'true'
+      # run: |
+        # curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")固件编译成功！" --data "content=编译的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")固件成功完成了！" "http://www.pushplus.plus/send"
