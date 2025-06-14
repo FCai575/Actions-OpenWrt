@@ -15,7 +15,7 @@
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/10.0.10.1/g" ./package/base-files/files/bin/config_generate
 
 #固件版本号添加个人标识和日期
-sed -i "s/DISTRIB_DESCRIPTION='LEDE '/DISTRIB_DESCRIPTION='Mitsuki($(TZ=UTC-8 date +%Y.%m.%d)) '/g" package/lean/default-settings/files/zzz-default-settings
+sed -i "s/DISTRIB_DESCRIPTION='%D %V %C'/DISTRIB_DESCRIPTION='FCai($(TZ=UTC-8 date +%Y.%m.%d)) '/g" package/base-files/files/etc/openwrt_release
 
 echo 'refresh feeds'
 ./scripts/feeds update -a
