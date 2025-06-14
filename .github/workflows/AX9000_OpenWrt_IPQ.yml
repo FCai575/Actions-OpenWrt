@@ -11,14 +11,6 @@
 name: AX9000_OpenWrt_IPQ
 
 on:
-  # schedule:
-    # - cron: 2 */5 * * *
-  # push:
-    # tags:
-    # - 'v*'
-  # watch:
-    # types: [started]
-  repository_dispatch:
   workflow_dispatch:
     inputs:
       ssh:
