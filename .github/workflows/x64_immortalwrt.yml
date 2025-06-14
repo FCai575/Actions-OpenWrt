@@ -11,13 +11,13 @@
 name: X64_immortalwrt
 
 on:
-  schedule:
-    - cron: 2 */5 * * *
-  push:
-    tags:
-    - 'v*'
-  watch:
-    types: [started]
+  # schedule:
+    # - cron: 2 */5 * * *
+  # push:
+    # tags:
+    # - 'v*'
+  # watch:
+    # types: [started]
   repository_dispatch:
   workflow_dispatch:
     inputs:
