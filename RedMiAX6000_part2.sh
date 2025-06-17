@@ -12,10 +12,10 @@
 
 # Modify default IP
 # sed -i 's/192.168.1.1/192.168.88.1/g' package/base-files/files/bin/config_generate
-sed -i "s/192\.168\.[0-9]*\.[0-9]*/10.0.10.1/g" ./package/base-files/files/bin/config_generate
+sed -i "s/192\.168\.[0-9]*\.[0-9]*/10.0.10.1/g" package/base-files/files/bin/config_generate
 
 # 固件版本号添加个人标识和日期
-sed -i "s/DISTRIB_DESCRIPTION='%D %V %C'/DISTRIB_DESCRIPTION='FCai($(TZ=UTC-8 date +%Y.%m.%d)) '/g" package/base-files/files/etc/openwrt_release
+# sed -i "s/DISTRIB_DESCRIPTION='%D %V %C'/DISTRIB_DESCRIPTION='FCai($(TZ=UTC-8 date +%Y.%m.%d)) '/g" package/base-files/files/etc/openwrt_release
 
 # 修正连接数
 # sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=100000' package/base-files/files/etc/sysctl.conf
