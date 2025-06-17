@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: AX9000_OpenWrt_IPQ
+name: ImmortalWrt_RedMiAX6000_mt798x
 
 on:
   workflow_dispatch:
@@ -22,10 +22,10 @@ env:
   REPO_URL: https://github.com/qosmio/openwrt-ipq.git
   REPO_BRANCH: 24.10-nss
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: AX9000.config
-  DIY_P1_SH: AX9000_part1.sh
-  DIY_P2_SH: AX9000_part2.sh
-  RELEASE_TAG: AX9000_OpenWrt_IPQ
+  CONFIG_FILE: RedMiAX6000.config
+  DIY_P1_SH: RedMiAX6000_part1.sh
+  DIY_P2_SH: RedMiAX6000_part2.sh
+  RELEASE_TAG: ImmortalWrt_RedMiAX6000_mt798x
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
